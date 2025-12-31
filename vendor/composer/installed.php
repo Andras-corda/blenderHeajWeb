@@ -1,20 +1,20 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
+        'name' => 'retro/blender_heaj',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '2e4fb032be311e8dd6301243c967fd9f76743b6b',
-        'type' => 'library',
+        'reference' => '8aeac14e4281e050670a2d303bca4383a151fbaf',
+        'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'retro/blender_heaj' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '2e4fb032be311e8dd6301243c967fd9f76743b6b',
-            'type' => 'library',
+            'reference' => '8aeac14e4281e050670a2d303bca4383a151fbaf',
+            'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,

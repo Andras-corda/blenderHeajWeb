@@ -1,9 +1,9 @@
 {
+  "name": "retro/blender_heaj",
+  "description": "Site PHP sur Railway",
+  "type": "project",
+  "license": "MIT",
   "require": {
-    "php": "^7.4.0 || ^8.0.0",
-    "ext-pdo": "*",
-    "ext-pdo_mysql": "*",
-    "ext-curl": "*",
-    "ext-json": "*"
+    "php": "^8.2"
   }
 }
