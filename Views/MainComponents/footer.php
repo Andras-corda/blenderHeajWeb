@@ -1,0 +1,1 @@
+<p>&copy; <?= date('Y') ?> Blender Heaj - Tous droits réservés</p>

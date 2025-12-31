@@ -1,0 +1,133 @@
+/* =============================================
+   VARIABLES CSS - SYSTÈME DE THÈMES
+   Style inspiré YouTube
+============================================= */
+
+/* Thème sombre (par défaut) */
+:root,
+[data-theme="dark"] {
+    /* Couleurs de fond */
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #181818;
+    --bg-tertiary: #212121;
+    --bg-elevated: #282828;
+    --bg-hover: #3f3f3f;
+    
+    /* Couleurs de texte */
+    --text-primary: #f1f1f1;
+    --text-secondary: #aaaaaa;
+    --text-muted: #717171;
+    --text-disabled: #525252;
+    
+    /* Couleurs d'accent */
+    --accent-primary: #ff0000;
+    --accent-hover: #cc0000;
+    --accent-soft: rgba(255, 0, 0, 0.1);
+    --accent-border: rgba(255, 0, 0, 0.3);
+    
+    /* Couleurs fonctionnelles */
+    --success: #2ba640;
+    --success-soft: rgba(43, 166, 64, 0.15);
+    --warning: #f59e0b;
+    --warning-soft: rgba(245, 158, 11, 0.15);
+    --error: #dc2626;
+    --error-soft: rgba(220, 38, 38, 0.15);
+    --info: #3b82f6;
+    --info-soft: rgba(59, 130, 246, 0.15);
+    
+    /* Bordures */
+    --border-color: #303030;
+    --border-light: #3f3f3f;
+    --border-focus: #065fd4;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4);
+    
+    /* Dimensions */
+    --header-height: 56px;
+    --sidebar-width: 240px;
+    --max-width: 1284px;
+    --card-radius: 12px;
+    --btn-radius: 8px;
+    --input-radius: 8px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+    --transition-slow: 300ms ease;
+    
+    /* Z-index */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal: 300;
+    --z-tooltip: 400;
+}
+
+/* Thème clair */
+[data-theme="light"] {
+    /* Couleurs de fond */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --bg-tertiary: #f2f2f2;
+    --bg-elevated: #ffffff;
+    --bg-hover: #e5e5e5;
+    
+    /* Couleurs de texte */
+    --text-primary: #0f0f0f;
+    --text-secondary: #606060;
+    --text-muted: #909090;
+    --text-disabled: #b0b0b0;
+    
+    /* Bordures */
+    --border-color: #e5e5e5;
+    --border-light: #d9d9d9;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Thème Crimson Amethyst Nightfall */
+[data-theme="CAN"] {
+    --bg-primary: #0e0e0e;
+    --bg-secondary: #1a1418;
+    --bg-tertiary: #251a22;
+    --bg-elevated: #2d1f2a;
+    --bg-hover: #3d2a38;
+    
+    --text-primary: #e8d5dc;
+    --text-secondary: #e19b8b;
+    --text-muted: #8b6b78;
+    
+    --accent-primary: #d41414;
+    --accent-hover: #b01010;
+    --accent-soft: rgba(212, 20, 20, 0.15);
+    
+    --border-color: #403963;
+    --border-light: #4a4270;
+}
+
+/* Thème Orange Moon */
+[data-theme="OM"] {
+    --bg-primary: #1a2530;
+    --bg-secondary: #243242;
+    --bg-tertiary: #2e3e50;
+    --bg-elevated: #354354;
+    --bg-hover: #425568;
+    
+    --text-primary: #fcac92;
+    --text-secondary: #ed6b47;
+    --text-muted: #9a7a6d;
+    
+    --accent-primary: #d5422d;
+    --accent-hover: #b8351f;
+    --accent-soft: rgba(213, 66, 45, 0.2);
+    
+    --border-color: #085075;
+    --border-light: #0a6590;
+}
