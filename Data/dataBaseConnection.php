@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $host = "mysql.railway.internal";
+    $host = "shortline.proxy.rlwy.net";
     $port = 48479;
     $dbname = "railway";
     $username = "root";
