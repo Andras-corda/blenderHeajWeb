@@ -29,21 +29,29 @@ function getPlaylistById($pdo, $id) {
 /* Create a new playlist */
 function createPlaylist($pdo, $userId, $title, $description = '', $thumbnail = '') {
     try {
-        $query = "INSERT INTO playlist(playlistUserId, playlistTitle, playlistDescription, playlistThumbnail, playlistCreatedAt) 
-        VALUES (:playlistUserId, :playlistTitle, :playlistDescription, :playlistThumbnail, :playlistCreatedAt)";
+        $query = "INSERT INTO playlist (playlistUserId, playlistTitle, playlistDescription, playlistThumbnail, playlistCreatedAt) 
+                  VALUES (:playlistUserId, :playlistTitle, :playlistDescription, :playlistThumbnail, NOW())";
 
         $stmt = $pdo->prepare($query);
-        $stmt->execute([
+        $result = $stmt->execute([
             'playlistUserId' => $userId,
             'playlistTitle' => $title,
             'playlistDescription' => $description,
-            'playlistThumbnail' => $thumbnail ?: null,
-            'playlistCreatedAt' => 1
+            'playlistThumbnail' => $thumbnail ?: null
         ]);
+
+        if ($result) {
+            $lastId = $pdo->lastInsertId();
+            error_log("✅ Playlist créée ! ID: $lastId, Titre: $title");
+            return $lastId;
+        }
         
-        return $pdo->lastInsertId();
+        error_log("❌ L'insertion a échoué");
+        return false;
+
     } catch (PDOException $e) {
-        error_log("Error createPlaylist: " . $e->getMessage());
+        error_log("💥 Error createPlaylist: " . $e->getMessage());
+        error_log("📍 Code erreur SQL: " . $e->getCode());
         return false;
     }
 }
