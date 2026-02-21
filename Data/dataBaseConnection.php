@@ -1,11 +1,11 @@
 <?php
 
 try {
-    $host = "shortline.proxy.rlwy.net";
-    $port = 48479;
+    $host = "gondola.proxy.rlwy.net";
+    $port = 56441;
     $dbname = "railway";
     $username = "root";
-    $password = "gYUBDNceJNvzxGUstHoHbQndRLVUeTZL";
+    $password = "vKGbeLEfIQrlqPEeBTzDgJPoVARoAFMj";
     
     $strConnection = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
 
