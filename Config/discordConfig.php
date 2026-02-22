@@ -4,7 +4,7 @@ define('DISCORD_CLIENT_ID', '1431177167605207070');
 define('DISCORD_CLIENT_SECRET', 'TjwWFMe0MCrEorh3vNOeYmMWAsr1uTiF');
 
 // Déterminer l'URL de redirection selon l'environnement
-define('DISCORD_REDIRECT_URI', "https://blenderheajweb-production.up.railway.app/auth/discord/callback");
+define('DISCORD_REDIRECT_URI', "https://web-production-786ab.up.railway.app//auth/discord/callback");
 
 // URLs de l'API Discord
 define('DISCORD_AUTH_URL', 'https://discord.com/api/oauth2/authorize');
