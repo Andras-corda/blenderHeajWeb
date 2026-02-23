@@ -198,6 +198,26 @@
     font-size: 64px;
 }
 
+/* Hex color thumbnail */
+.playlist-card__thumbnail-color {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color var(--transition-fast);
+}
+
+.playlist-card__thumbnail-color .material-icons {
+    font-size: 64px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.playlist-card:hover .playlist-card__thumbnail-color {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* Playlist Overlay */
 .playlist-card__overlay {
     position: absolute;

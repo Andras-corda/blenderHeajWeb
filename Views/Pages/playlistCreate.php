@@ -43,14 +43,14 @@
         
         <div class="form-group">
             <label for="picture" class="form-label">
-                <span translate="no">Thumbnail URL</span>
+                <span translate="no">Thumbnail (URL or hex color)</span>
             </label>
             <input 
-                type="url" 
+                type="text" 
                 id="picture" 
                 name="picture" 
                 class="form-control"
-                placeholder="https://example.com/image.jpg"
+                placeholder="#FF5733 or https://example.com/image.jpg"
                 onchange="previewThumbnail()"
             >
             <small class="form-text">
@@ -62,7 +62,7 @@
             <label class="form-label">
                 <span translate="no">Preview</span>
             </label>
-            <div class="thumbnail-preview__wrapper">
+            <div class="thumbnail-preview__wrapper" id="thumbnailWrapper">
                 <img id="thumbnailImage" src="" alt="Preview">
             </div>
         </div>
@@ -81,19 +81,44 @@
 
 <script>
 function previewThumbnail() {
-    const url = document.getElementById('picture').value;
-    const preview = document.getElementById('thumbnailPreview');
+    const val = document.getElementById('picture').value.trim();
+    const previewSection = document.getElementById('thumbnailPreview');
+    const wrapper = document.getElementById('thumbnailWrapper');
     const img = document.getElementById('thumbnailImage');
-    
-    if (url) {
-        img.src = url;
-        preview.style.display = 'block';
-        
+    const isHex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
+
+    if (isHex) {
+        previewSection.style.display = 'block';
+        wrapper.style.backgroundColor = val;
+        wrapper.style.minHeight = '120px';
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.justifyContent = 'center';
+        img.style.display = 'none';
+
+        if (!wrapper.querySelector('.hex-icon')) {
+            const icon = document.createElement('span');
+            icon.className = 'material-icons hex-icon';
+            icon.style.cssText = 'font-size:48px; color:rgba(255,255,255,0.6);';
+            icon.textContent = 'playlist_play';
+            wrapper.appendChild(icon);
+        }
+    } else if (val) {
+        previewSection.style.display = 'block';
+        wrapper.style.backgroundColor = '';
+        const hexIcon = wrapper.querySelector('.hex-icon');
+        if (hexIcon) hexIcon.remove();
+        img.style.display = '';
+        img.src = val;
         img.onerror = function() {
-            preview.style.display = 'none';
+            previewSection.style.display = 'none';
         };
     } else {
-        preview.style.display = 'none';
+        previewSection.style.display = 'none';
+        wrapper.style.backgroundColor = '';
+        const hexIcon = wrapper.querySelector('.hex-icon');
+        if (hexIcon) hexIcon.remove();
+        img.style.display = '';
     }
 }
 </script>

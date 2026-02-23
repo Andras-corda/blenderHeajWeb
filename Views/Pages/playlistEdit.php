@@ -54,25 +54,34 @@
                 
                 <div class="form-group">
                     <label for="playlistThumbnail" class="form-label">
-                        <span translate="no">Thumbnail URL</span>
+                        <span translate="no">Thumbnail (URL or hex color)</span>
                     </label>
                     <input 
-                        type="url" 
+                        type="text" 
                         id="playlistThumbnail" 
                         name="playlistThumbnail" 
                         value="<?= htmlspecialchars($playlist['playlistThumbnail'] ?? '') ?>"
                         class="form-control"
+                        placeholder="https://... or #FF5733"
                         onchange="previewThumbnail()"
                     >
                 </div>
                 
-                <?php if (!empty($playlist['playlistThumbnail'])): ?>
+                <?php 
+                $thumb = $playlist['playlistThumbnail'] ?? '';
+                $isHexColor = preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', trim($thumb));
+                if (!empty($thumb)): ?>
                 <div class="thumbnail-preview">
                     <label class="form-label">
                         <span translate="no">Preview</span>
                     </label>
-                    <div class="thumbnail-preview__wrapper">
-                        <img id="thumbnailPreview" src="<?= htmlspecialchars($playlist['playlistThumbnail']) ?>" alt="Preview">
+                    <div class="thumbnail-preview__wrapper" id="thumbnailWrapper" 
+                         <?= $isHexColor ? 'style="background-color:' . htmlspecialchars(trim($thumb)) . '; display:flex; align-items:center; justify-content:center;"' : '' ?>>
+                        <?php if ($isHexColor): ?>
+                            <span class="material-icons" style="font-size:48px; color:rgba(255,255,255,0.6);" translate="no">playlist_play</span>
+                        <?php else: ?>
+                            <img id="thumbnailPreview" src="<?= htmlspecialchars($thumb) ?>" alt="Preview">
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -234,14 +243,39 @@
 
 <script>
 function previewThumbnail() {
-    const url = document.getElementById('playlistThumbnail').value;
+    const val = document.getElementById('playlistThumbnail').value.trim();
+    const wrapper = document.getElementById('thumbnailWrapper');
     const preview = document.getElementById('thumbnailPreview');
-    
-    if (url && preview) {
-        preview.src = url;
-        preview.onerror = function() {
-            this.src = 'https://via.placeholder.com/320x180?text=Invalid+URL';
-        };
+    const isHex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
+
+    if (!wrapper) return;
+
+    if (isHex) {
+        wrapper.style.backgroundColor = val;
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.justifyContent = 'center';
+        if (preview) preview.style.display = 'none';
+
+        if (!wrapper.querySelector('.hex-icon')) {
+            const icon = document.createElement('span');
+            icon.className = 'material-icons hex-icon';
+            icon.style.cssText = 'font-size:48px; color:rgba(255,255,255,0.6);';
+            icon.translate = false;
+            icon.textContent = 'playlist_play';
+            wrapper.appendChild(icon);
+        }
+    } else if (val) {
+        wrapper.style.backgroundColor = '';
+        const hexIcon = wrapper.querySelector('.hex-icon');
+        if (hexIcon) hexIcon.remove();
+        if (preview) {
+            preview.style.display = '';
+            preview.src = val;
+            preview.onerror = function() {
+                this.src = 'https://via.placeholder.com/320x180?text=Invalid+URL';
+            };
+        }
     }
 }
 

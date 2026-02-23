@@ -33,9 +33,18 @@
             <div class="playlist-card" data-title="<?= strtolower(htmlspecialchars($playlist['playlistTitle'])) ?>">
                 <a href="/playlist?playlistId=<?= htmlspecialchars($playlist['playlistId']) ?>" class="playlist-card__link">
                     <div class="playlist-card__thumbnail">
-                        <?php if (!empty($playlist['playlistThumbnail'])) : ?>
+                        <?php 
+                        $thumb = $playlist['playlistThumbnail'] ?? '';
+                        $isHexColor = preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', trim($thumb));
+                        $isUrl = !$isHexColor && !empty($thumb);
+                        ?>
+                        <?php if ($isHexColor) : ?>
+                            <div class="playlist-card__thumbnail-color" style="background-color: <?= htmlspecialchars(trim($thumb)) ?>;">
+                                <span class="material-icons" translate="no">playlist_play</span>
+                            </div>
+                        <?php elseif ($isUrl) : ?>
                             <img 
-                                src="<?= htmlspecialchars($playlist['playlistThumbnail']) ?>" 
+                                src="<?= htmlspecialchars($thumb) ?>" 
                                 alt="<?= htmlspecialchars($playlist['playlistTitle']) ?>"
                                 loading="lazy"
                             >
